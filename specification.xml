@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    *  Copyright (C) 2002-2015  The FreeCol Team
+    *
+    *  This file is part of FreeCol.
+    *
+    *  FreeCol is free software: you can redistribute it and/or modify
+    *  it under the terms of the GNU General Public License as published by
+    *  the Free Software Foundation, either version 2 of the License, or
+    *  (at your option) any later version.
+    *
+    *  FreeCol is distributed in the hope that it will be useful,
+    *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+    *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    *  GNU General Public License for more details.
+    *
+    *  You should have received a copy of the GNU General Public License
+    *  along with FreeCol.  If not, see <http://www.gnu.org/licenses/>.
+
+    In case of incompatible changes, please update version number and
+    XSD schema for validation.
+-->
+<freecol-specification id="AmyzNations">
+  <european-nation-types>
+    <european-nation-type id="model.nationType.ref" preserve="true">
+      <!-- Shorten REF sail time. -->
+      <modifier id="model.modifier.sailHighSeas"
+                type="additive" value="-1"/>
+    </european-nation-type>
+	
+	<european-nation-type id="model.nationType.militaristic"
+                          extends="model.nationType.default">
+      <unit id="soldier" type="model.unit.masterGunsmith"
+            role="model.role.soldier"/>
+      <modifier id="model.goods.muskets" index="80"
+                type="additive" value="3">
+        <scope ability-id="model.ability.person" />
+      </modifier>
+    </european-nation-type>
+	
+    <european-nation-type id="model.nationType.politics"
+                          extends="model.nationType.default">
+      <unit id="pioneer" type="model.unit.elderStatesman"
+            role="model.role.pioneer"/>
+      <modifier id="model.goods.bells" index="80"
+                type="additive" value="2"/>
+    </european-nation-type>
+	
+	<european-nation-type id="model.nationType.ore"
+                          extends="model.nationType.default">
+      <unit id="pioneer" type="model.unit.expertOreMiner"
+            role="model.role.pioneer"/>
+      <modifier id="model.goods.ore" index="80"
+                type="additive" value="3"/>
+    </european-nation-type>
+	
+	<european-nation-type id="model.nationType.silver"
+                          extends="model.nationType.default">
+      <unit id="pioneer" type="model.unit.expertSilverMiner"
+            role="model.role.pioneer"/>
+      <modifier id="model.goods.silver" index="80"
+                type="additive" value="3"/>
+    </european-nation-type>
+	
+	<european-nation-type id="model.nationType.brewing"
+                          extends="model.nationType.default">
+      <unit id="pioneer" type="model.unit.masterSugarPlanter"
+            role="model.role.pioneer"/>
+		<unit id="soldier" type="model.unit.masterDistiller"
+            role="model.role.soldier"/>
+      <modifier id="model.goods.cotton" index="80"
+                type="additive" value="2"/>
+	  <modifier id="model.goods.cloth" index="80"
+                type="additive" value="2"/>
+    </european-nation-type>
+	
+    <european-nation-type id="model.nationType.textiles"
+                          extends="model.nationType.default">
+      <unit id="pioneer" type="model.unit.masterCottonPlanter"
+            role="model.role.pioneer"/>
+		<unit id="soldier" type="model.unit.masterWeaver"
+            role="model.role.soldier"/>
+      <modifier id="model.goods.cotton" index="80"
+                type="additive" value="2"/>
+	  <modifier id="model.goods.cloth" index="80"
+                type="additive" value="2"/>
+    </european-nation-type>
+	
+	<european-nation-type id="model.nationType.smoking"
+                          extends="model.nationType.default">
+      <unit id="pioneer" type="model.unit.masterTobaccoPlanter"
+            role="model.role.pioneer"/>
+	  <unit id="soldier" type="model.unit.masterTobacconist"
+            role="model.role.soldier"/>
+      <modifier id="model.goods.tobacco" index="80"
+                type="additive" value="2"/>
+	  <modifier id="model.goods.cigars" index="80"
+                type="additive" value="2"/>
+    </european-nation-type>
+	
+    <european-nation-type id="model.nationType.faithful"
+                          extends="model.nationType.default">
+      <unit id="pioneer" type="model.unit.firebrandPreacher"
+            role="model.role.pioneer"/>
+      <modifier id="model.goods.crosses" index="80"
+                type="additive" value="3"/>
+    </european-nation-type>
+	
+	<european-nation-type id="model.nationType.toolmaking"
+                          extends="model.nationType.default">
+      <unit id="pioneer" type="model.unit.masterBlacksmith"
+            role="model.role.pioneer"/>
+      <modifier id="model.goods.tools" index="80"
+                type="additive" value="3">
+        <scope ability-id="model.ability.person" />
+      </modifier>
+    </european-nation-type>
+	
+	<european-nation-type id="model.nationType.fisherman"
+                          extends="model.nationType.default">
+      <unit id="pioneer" type="model.unit.expertFisherman"
+            role="model.role.pioneer"/>
+	  <unit id="ship" type="model.unit.merchantman"/>
+      <modifier id="model.goods.fish" index="80"
+                type="additive" value="3"/>
+    </european-nation-type>
+	
+  </european-nation-types>
+
+  <indian-nation-types>
+   <indian-nation-type id="model.nationType.guarani" 
+                        number-of-settlements="average" aggression="high">
+		<settlement id="model.settlement.village" capital="false"
+                  claimable-radius="1" extra-claimable-radius="2"
+                  minimum-size="6" maximum-size="8"
+                  minimum-growth="1" maximum-growth="8"
+                  trade-bonus="2" convert-threshold="100">
+        <plunder id="plunder.village" probability="50"
+                 minimum="3" maximum="8" factor="100">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.village.extra" probability="100"
+                 minimum="4" maximum="12" factor="100">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="3" maximum="6" factor="100" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="50"/>
+      </settlement>
+      <settlement id="model.settlement.village.capital" capital="true"
+                  claimable-radius="2" extra-claimable-radius="2"
+                  minimum-size="8" maximum-size="10"
+                  minimum-growth="2" maximum-growth="10"
+                  trade-bonus="3" convert-threshold="100">
+        <plunder id="plunder.village.capital" probability="100"
+                 minimum="3" maximum="8" factor="200">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.village.capital.extra" probability="100"
+                 minimum="3" maximum="8" factor="300">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="4" maximum="8" factor="200" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="100"/>
+      </settlement>
+      <skill id="model.unit.masterTobaccoPlanter" probability="20"/>
+      <skill id="model.unit.expertFisherman" probability="10"/>
+      <skill id="model.unit.masterFurTrader" probability="5"/>
+      <region id="model.region.east" />
+      <region id="model.region.southEast" />
+	   <ability id="model.ability.ambushBonus"
+               value="true"/>
+      <ability id="model.ability.foundsColonies"
+               value="false"/>
+      <ability id="model.ability.automaticEquipment"
+               value="true">
+        <scope type="model.role.nativeDragoon"/>
+        <scope type="model.role.armedBrave"/>
+      </ability>
+      <ability id="model.ability.native"/>
+    </indian-nation-type>
+    <indian-nation-type id="model.nationType.mapuche" 
+                        number-of-settlements="low" aggression="high">
+		<settlement id="model.settlement.village" capital="false"
+                  claimable-radius="1" extra-claimable-radius="2"
+                  minimum-size="6" maximum-size="8"
+                  minimum-growth="1" maximum-growth="8"
+                  trade-bonus="2" convert-threshold="100">
+        <plunder id="plunder.village" probability="50"
+                 minimum="3" maximum="8" factor="100">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.village.extra" probability="100"
+                 minimum="4" maximum="12" factor="100">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="3" maximum="6" factor="100" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="50"/>
+      </settlement>
+      <settlement id="model.settlement.village.capital" capital="true"
+                  claimable-radius="2" extra-claimable-radius="2"
+                  minimum-size="8" maximum-size="10"
+                  minimum-growth="2" maximum-growth="10"
+                  trade-bonus="3" convert-threshold="100">
+        <plunder id="plunder.village.capital" probability="100"
+                 minimum="3" maximum="8" factor="200">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.village.capital.extra" probability="100"
+                 minimum="3" maximum="8" factor="300">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="4" maximum="8" factor="200" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="100"/>
+      </settlement>
+      <skill id="model.unit.expertFisherman" probability="20"/>
+      <skill id="model.unit.expertOreMiner" probability="10"/>
+      <skill id="model.unit.seasonedScout" probability="5"/>
+      <region id="model.region.south" />
+      <region id="model.region.southWest" />
+	  <ability id="model.ability.ambushBonus"
+               value="true"/>
+      <ability id="model.ability.foundsColonies"
+               value="false"/>
+      <ability id="model.ability.automaticEquipment"
+               value="true">
+        <scope type="model.role.nativeDragoon"/>
+        <scope type="model.role.armedBrave"/>
+      </ability>
+      <ability id="model.ability.native"/>
+    </indian-nation-type>
+	<indian-nation-type id="model.nationType.carib" 
+                        number-of-settlements="average" aggression="low">
+		<settlement id="model.settlement.village" capital="false"
+                  claimable-radius="1" extra-claimable-radius="2"
+                  minimum-size="6" maximum-size="8"
+                  minimum-growth="1" maximum-growth="8"
+                  trade-bonus="2" convert-threshold="100">
+        <plunder id="plunder.village" probability="50"
+                 minimum="3" maximum="8" factor="100">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.village.extra" probability="100"
+                 minimum="4" maximum="12" factor="100">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="3" maximum="6" factor="100" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="50"/>
+      </settlement>
+      <settlement id="model.settlement.village.capital" capital="true"
+                  claimable-radius="2" extra-claimable-radius="2"
+                  minimum-size="8" maximum-size="10"
+                  minimum-growth="2" maximum-growth="10"
+                  trade-bonus="3" convert-threshold="100">
+        <plunder id="plunder.village.capital" probability="100"
+                 minimum="3" maximum="8" factor="200">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.village.capital.extra" probability="100"
+                 minimum="3" maximum="8" factor="300">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="4" maximum="8" factor="200" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="100"/>
+      </settlement>
+      <skill id="model.unit.masterTobacconist" probability="20"/>
+      <skill id="model.unit.masterTobaccoPlanter" probability="10"/>
+      <skill id="model.unit.expertFisherman" probability="5"/>
+	  <ability id="model.ability.ambushBonus"
+               value="true"/>
+      <ability id="model.ability.foundsColonies"
+               value="false"/>
+      <ability id="model.ability.automaticEquipment"
+               value="true">
+        <scope type="model.role.nativeDragoon"/>
+        <scope type="model.role.armedBrave"/>
+      </ability>
+      <region id="model.region.center" />
+      <region id="model.region.southEast" />
+	  <ability id="model.ability.ambushBonus"
+               value="true"/>
+      <ability id="model.ability.foundsColonies"
+               value="false"/>
+      <ability id="model.ability.automaticEquipment"
+               value="true">
+        <scope type="model.role.nativeDragoon"/>
+        <scope type="model.role.armedBrave"/>
+      </ability>
+      <ability id="model.ability.native"/>
+    </indian-nation-type>
+	<indian-nation-type id="model.nationType.cree" 
+                        number-of-settlements="average" aggression="low">
+		<settlement id="model.settlement.village" capital="false"
+                  claimable-radius="1" extra-claimable-radius="2"
+                  minimum-size="6" maximum-size="8"
+                  minimum-growth="1" maximum-growth="8"
+                  trade-bonus="2" convert-threshold="100">
+        <plunder id="plunder.village" probability="50"
+                 minimum="3" maximum="8" factor="100">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.village.extra" probability="100"
+                 minimum="4" maximum="12" factor="100">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="3" maximum="6" factor="100" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="50"/>
+      </settlement>
+      <settlement id="model.settlement.village.capital" capital="true"
+                  claimable-radius="2" extra-claimable-radius="2"
+                  minimum-size="8" maximum-size="10"
+                  minimum-growth="2" maximum-growth="10"
+                  trade-bonus="3" convert-threshold="100">
+        <plunder id="plunder.village.capital" probability="100"
+                 minimum="3" maximum="8" factor="200">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.village.capital.extra" probability="100"
+                 minimum="3" maximum="8" factor="300">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="4" maximum="8" factor="200" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="100"/>
+      </settlement>
+      <skill id="model.unit.expertFurTrapper" probability="20"/>
+	  <skill id="model.unit.masterFurTrader" probability="10"/>
+      <skill id="model.unit.masterWeaver" probability="5"/>
+	  <ability id="model.ability.ambushBonus"
+               value="true"/>
+      <ability id="model.ability.foundsColonies"
+               value="false"/>
+      <ability id="model.ability.automaticEquipment"
+               value="true">
+        <scope type="model.role.nativeDragoon"/>
+        <scope type="model.role.armedBrave"/>
+      </ability>
+      <region id="model.region.north" />
+      <region id="model.region.northEast" />
+	  <ability id="model.ability.ambushBonus"
+               value="true"/>
+      <ability id="model.ability.foundsColonies"
+               value="false"/>
+      <ability id="model.ability.automaticEquipment"
+               value="true">
+        <scope type="model.role.nativeDragoon"/>
+        <scope type="model.role.armedBrave"/>
+      </ability>
+      <ability id="model.ability.native"/>
+    </indian-nation-type>
+	<indian-nation-type id="model.nationType.shoshone" 
+                        number-of-settlements="high" aggression="low">
+		<settlement id="model.settlement.village" capital="false"
+                  claimable-radius="1" extra-claimable-radius="2"
+                  minimum-size="6" maximum-size="8"
+                  minimum-growth="1" maximum-growth="8"
+                  trade-bonus="2" convert-threshold="100">
+        <plunder id="plunder.village" probability="50"
+                 minimum="3" maximum="8" factor="100">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.village.extra" probability="100"
+                 minimum="4" maximum="12" factor="100">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="3" maximum="6" factor="100" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="50"/>
+      </settlement>
+      <settlement id="model.settlement.village.capital" capital="true"
+                  claimable-radius="2" extra-claimable-radius="2"
+                  minimum-size="8" maximum-size="10"
+                  minimum-growth="2" maximum-growth="10"
+                  trade-bonus="3" convert-threshold="100">
+        <plunder id="plunder.village.capital" probability="100"
+                 minimum="3" maximum="8" factor="200">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.village.capital.extra" probability="100"
+                 minimum="3" maximum="8" factor="300">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="4" maximum="8" factor="200" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="100"/>
+      </settlement>
+      <skill id="model.unit.masterCottonPlanter" probability="20"/>
+      <skill id="model.unit.masterWeaver" probability="10"/>
+      <skill id="model.unit.seasonedScout" probability="5"/>
+	  <ability id="model.ability.ambushBonus"
+               value="true"/>
+      <ability id="model.ability.foundsColonies"
+               value="false"/>
+      <ability id="model.ability.automaticEquipment"
+               value="true">
+        <scope type="model.role.nativeDragoon"/>
+        <scope type="model.role.armedBrave"/>
+      </ability>
+      <region id="model.region.west" />
+      <region id="model.region.northWest" />
+	  <ability id="model.ability.ambushBonus"
+               value="true"/>
+      <ability id="model.ability.foundsColonies"
+               value="false"/>
+      <ability id="model.ability.automaticEquipment"
+               value="true">
+        <scope type="model.role.nativeDragoon"/>
+        <scope type="model.role.armedBrave"/>
+      </ability>
+      <ability id="model.ability.native"/>
+    </indian-nation-type>
+	
+    <indian-nation-type id="model.nationType.maya" 
+                        number-of-settlements="average" aggression="average">
+		<settlement id="model.settlement.aztec" capital="false"
+                  claimable-radius="2" extra-claimable-radius="2"
+                  minimum-size="8" maximum-size="12"
+                  minimum-growth="3" maximum-growth="12"
+                  trade-bonus="3" convert-threshold="100">
+        <plunder id="plunder.aztec" probability="100"
+                 minimum="5" maximum="9" factor="1000">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.aztec.extra" probability="100"
+                 minimum="11" maximum="15" factor="1000">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="4" maximum="8" factor="200" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="100"/>
+      </settlement>
+      <settlement id="model.settlement.aztec.capital" capital="true"
+                  claimable-radius="3" extra-claimable-radius="3"
+                  minimum-size="10" maximum-size="12"
+                  minimum-growth="4" maximum-growth="14"
+                  trade-bonus="4" convert-threshold="100">
+        <plunder id="plunder.aztec.capital" probability="100"
+                 minimum="7" maximum="12" factor="1000">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.aztec.capital.extra" probability="100"
+                 minimum="16" maximum="19" factor="1000">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="5" maximum="10" factor="300" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="200"/>
+      </settlement>
+      <skill id="model.unit.expertSilverMiner" probability="20"/>
+      <skill id="model.unit.masterSugarPlanter" probability="10"/>
+      <skill id="model.unit.expertOreMiner" probability="5"/>
+      <region id="model.region.center" />
+      <region id="model.region.east" />
+	   <ability id="model.ability.ambushBonus"
+               value="true"/>
+      <ability id="model.ability.foundsColonies"
+               value="false"/>
+      <ability id="model.ability.automaticEquipment"
+               value="true">
+        <scope type="model.role.nativeDragoon"/>
+        <scope type="model.role.armedBrave"/>
+      </ability>
+	   <ability id="model.ability.native"/>
+    </indian-nation-type>
+	<indian-nation-type id="model.nationType.zapotec" 
+                        number-of-settlements="low" aggression="average">
+		<settlement id="model.settlement.aztec" capital="false"
+                  claimable-radius="2" extra-claimable-radius="2"
+                  minimum-size="8" maximum-size="12"
+                  minimum-growth="3" maximum-growth="12"
+                  trade-bonus="3" convert-threshold="100">
+        <plunder id="plunder.aztec" probability="100"
+                 minimum="5" maximum="9" factor="1000">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.aztec.extra" probability="100"
+                 minimum="11" maximum="15" factor="1000">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="4" maximum="8" factor="200" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="100"/>
+      </settlement>
+      <settlement id="model.settlement.aztec.capital" capital="true"
+                  claimable-radius="3" extra-claimable-radius="3"
+                  minimum-size="10" maximum-size="12"
+                  minimum-growth="4" maximum-growth="14"
+                  trade-bonus="4" convert-threshold="100">
+        <plunder id="plunder.aztec.capital" probability="100"
+                 minimum="7" maximum="12" factor="1000">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.aztec.capital.extra" probability="100"
+                 minimum="16" maximum="19" factor="1000">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="5" maximum="10" factor="300" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="200"/>
+      </settlement>
+      <skill id="model.unit.expertOreMiner" probability="20"/>
+      <skill id="model.unit.expertSilverMiner" probability="10"/>
+      <skill id="model.unit.masterTobaccoPlanter" probability="5"/>
+      <region id="model.region.center" />
+      <region id="model.region.west" />
+	  <ability id="model.ability.ambushBonus"
+               value="true"/>
+      <ability id="model.ability.foundsColonies"
+               value="false"/>
+      <ability id="model.ability.automaticEquipment"
+               value="true">
+        <scope type="model.role.nativeDragoon"/>
+        <scope type="model.role.armedBrave"/>
+      </ability>
+	   <ability id="model.ability.native"/>
+    </indian-nation-type>
+    <indian-nation-type id="model.nationType.muisca" 
+                        number-of-settlements="high" aggression="average">
+		<settlement id="model.settlement.inca" capital="false"
+                  claimable-radius="2" extra-claimable-radius="2"
+                  minimum-size="8" maximum-size="12"
+                  minimum-growth="3" maximum-growth="12"
+                  trade-bonus="3" convert-threshold="100">
+        <plunder id="plunder.inca" probability="100"
+                 minimum="2" maximum="6" factor="2100">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.inca.extra" probability="100"
+                 minimum="2" maximum="6" factor="3100">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="3" maximum="6" factor="200" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="100"/>
+      </settlement>
+      <settlement id="model.settlement.inca.capital" capital="true"
+                  claimable-radius="3" extra-claimable-radius="3"
+                  minimum-size="10" maximum-size="12"
+                  minimum-growth="4" maximum-growth="14"
+                  trade-bonus="4" convert-threshold="100">
+        <plunder id="plunder.inca.capital" probability="100"
+                 minimum="2" maximum="6" factor="3000">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.inca.capital.extra" probability="100"
+                 minimum="3" maximum="8" factor="4000">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="4" maximum="8" factor="300" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="200"/>
+      </settlement>
+      <skill id="model.unit.expertSilverMiner" probability="20"/>
+      <skill id="model.unit.masterSugarPlanter" probability="10"/>
+      <skill id="model.unit.expertFurTrapper" probability="5"/>
+      <region id="model.region.center" />
+      <region id="model.region.south" />
+	  <ability id="model.ability.ambushBonus"
+               value="true"/>
+      <ability id="model.ability.foundsColonies"
+               value="false"/>
+      <ability id="model.ability.automaticEquipment"
+               value="true">
+        <scope type="model.role.nativeDragoon"/>
+        <scope type="model.role.armedBrave"/>
+      </ability>
+	   <ability id="model.ability.native"/>
+    </indian-nation-type>
+	<indian-nation-type id="model.nationType.purepecha" 
+                        number-of-settlements="low" aggression="average">
+	   <settlement id="model.settlement.aztec" capital="false"
+                  claimable-radius="2" extra-claimable-radius="2"
+                  minimum-size="8" maximum-size="12"
+                  minimum-growth="3" maximum-growth="12"
+                  trade-bonus="3" convert-threshold="100">
+        <plunder id="plunder.aztec" probability="100"
+                 minimum="5" maximum="9" factor="1000">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.aztec.extra" probability="100"
+                 minimum="11" maximum="15" factor="1000">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="4" maximum="8" factor="200" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="100"/>
+      </settlement>
+      <settlement id="model.settlement.aztec.capital" capital="true"
+                  claimable-radius="3" extra-claimable-radius="3"
+                  minimum-size="10" maximum-size="12"
+                  minimum-growth="4" maximum-growth="14"
+                  trade-bonus="4" convert-threshold="100">
+        <plunder id="plunder.aztec.capital" probability="100"
+                 minimum="7" maximum="12" factor="1000">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.aztec.capital.extra" probability="100"
+                 minimum="16" maximum="19" factor="1000">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="5" maximum="10" factor="300" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="200"/>
+      </settlement>
+      <skill id="model.unit.expertSilverMiner" probability="20"/>
+      <skill id="model.unit.masterSugarPlanter" probability="10"/>
+      <skill id="model.unit.expertOreMiner" probability="5"/>
+      <region id="model.region.center" />
+      <region id="model.region.west" />
+	  <ability id="model.ability.ambushBonus"
+               value="true"/>
+      <ability id="model.ability.foundsColonies"
+               value="false"/>
+      <ability id="model.ability.automaticEquipment"
+               value="true">
+        <scope type="model.role.nativeDragoon"/>
+        <scope type="model.role.armedBrave"/>
+      </ability>
+	   <ability id="model.ability.native"/>
+    </indian-nation-type>
+	<indian-nation-type id="model.nationType.aymara" 
+                        number-of-settlements="average" aggression="low">
+	   <settlement id="model.settlement.inca" capital="false"
+                  claimable-radius="2" extra-claimable-radius="2"
+                  minimum-size="8" maximum-size="12"
+                  minimum-growth="3" maximum-growth="12"
+                  trade-bonus="3" convert-threshold="100">
+        <plunder id="plunder.inca" probability="100"
+                 minimum="2" maximum="6" factor="2100">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.inca.extra" probability="100"
+                 minimum="2" maximum="6" factor="3100">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="3" maximum="6" factor="200" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="100"/>
+      </settlement>
+      <settlement id="model.settlement.inca.capital" capital="true"
+                  claimable-radius="3" extra-claimable-radius="3"
+                  minimum-size="10" maximum-size="12"
+                  minimum-growth="4" maximum-growth="14"
+                  trade-bonus="4" convert-threshold="100">
+        <plunder id="plunder.inca.capital" probability="100"
+                 minimum="2" maximum="6" factor="3000">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="false"/>
+        </plunder>
+        <plunder id="plunder.inca.capital.extra" probability="100"
+                 minimum="3" maximum="8" factor="4000">
+          <scope ability-id="model.ability.plunderNatives"
+                 ability-value="true"/>
+        </plunder>
+        <gifts probability="100" minimum="4" maximum="8" factor="300" />
+        <modifier id="model.modifier.defence" index="50"
+                  type="percentage" value="200"/>
+      </settlement>
+      <skill id="model.unit.expertSilverMiner" probability="20"/>
+      <skill id="model.unit.expertOreMiner" probability="10"/>
+      <skill id="model.unit.expertFarmer" probability="5"/>
+      <region id="model.region.center" />
+      <region id="model.region.south" />
+	  <ability id="model.ability.ambushBonus"
+               value="true"/>
+      <ability id="model.ability.foundsColonies"
+               value="false"/>
+      <ability id="model.ability.automaticEquipment"
+               value="true">
+        <scope type="model.role.nativeDragoon"/>
+        <scope type="model.role.armedBrave"/>
+      </ability>
+	   <ability id="model.ability.native"/>
+    </indian-nation-type>
+  </indian-nation-types>
+
+  <nations>
+	<!-- <nation id="model.nation.dutch" color="0xff9d3c"
+            nation-type="model.nationType.trade" selectable="true"
+            preferred-latitude="-40" ref="model.nation.dutchREF"/>
+    <nation id="model.nation.french" color="0x0000ff"
+            nation-type="model.nationType.cooperation" selectable="true"
+            preferred-latitude="-53" ref="model.nation.frenchREF"/>-->
+    <nation id="model.nation.english" color="0xff0000"
+            nation-type="model.nationType.brewing" selectable="true"
+            preferred-latitude="-37" ref="model.nation.englishREF"/>
+    <nation id="model.nation.spanish" color="0xffff00"
+            nation-type="model.nationType.silver" selectable="true"
+            preferred-latitude="-19" ref="model.nation.spanishREF"/> 
+	 <!-- <nation id="model.nation.portuguese" color="0x00ff00"
+            nation-type="model.nationType.naval" selectable="true"
+            preferred-latitude="-16" ref="model.nation.portugueseREF"/>
+    <nation id="model.nation.swedish" color="0x00bfff"
+            nation-type="model.nationType.building" selectable="true"
+            preferred-latitude="-39" ref="model.nation.swedishREF"/> -->
+    <nation id="model.nation.danish" color="0xff00bf"
+            nation-type="model.nationType.textiles" selectable="true"
+            preferred-latitude="-64" ref="model.nation.danishREF"/>
+    <!-- <nation id="model.nation.russian" color="0xffffff"
+            nation-type="model.nationType.furTrapping" selectable="true"
+            preferred-latitude="-55" starts-on-east-coast="false"
+            ref="model.nation.russianREF"/> -->
+			
+	<nation id="model.nation.scotland" color="0xffff99"
+            nation-type="model.nationType.smoking" selectable="true"
+            preferred-latitude="30" ref="model.nation.scotlandREF"/>
+    <nation id="model.nation.venice" color="0x74d496"
+            nation-type="model.nationType.toolmaking" selectable="true"
+            preferred-latitude="25" ref="model.nation.veniceREF"/>
+	<nation id="model.nation.austria" color="0xaa710c"
+            nation-type="model.nationType.politics" selectable="true"
+            preferred-latitude="40" ref="model.nation.austriaREF"/>
+    <nation id="model.nation.prussia" color="0xAEAEAE"
+            nation-type="model.nationType.militaristic" selectable="true"
+            preferred-latitude="30" ref="model.nation.prussiaREF"/>
+	<nation id="model.nation.poland" color="0x9e6f82"
+            nation-type="model.nationType.agriculture" selectable="true"
+            preferred-latitude="35" ref="model.nation.polandREF"/> 		
+	<nation id="model.nation.osmaniye" color="0x751414"
+            nation-type="model.nationType.conquest" selectable="true"
+            preferred-latitude="15" ref="model.nation.osmaniyeREF"/>
+	<nation id="model.nation.india" color="0x368756"
+            nation-type="model.nationType.faithful" selectable="true"
+            preferred-latitude="-45" starts-on-east-coast="false" ref="model.nation.indiaREF"/> 
+	<nation id="model.nation.china" color="0xcbf85f"
+            nation-type="model.nationType.immigration" selectable="true"
+            preferred-latitude="40" starts-on-east-coast="false" ref="model.nation.chinaREF"/>
+	<nation id="model.nation.korea" color="0xeecffe"
+            nation-type="model.nationType.ore" selectable="true"
+            preferred-latitude="55" starts-on-east-coast="false" ref="model.nation.koreaREF"/>
+    <nation id="model.nation.japan" color="0xfe6f54"
+            nation-type="model.nationType.fisherman" selectable="true"
+            preferred-latitude="70" starts-on-east-coast="false" ref="model.nation.japanREF"/>
+         
+    
+    <nation id="model.nation.cree" color="0x876c44"
+            nation-type="model.nationType.cree"/>
+    <nation id="model.nation.shoshone" color="0x64755d"
+            nation-type="model.nationType.shoshone"/>
+    <nation id="model.nation.carib" color="0x05c2b5"
+            nation-type="model.nationType.carib"/>
+	<nation id="model.nation.maya" color="0xc6937a"
+            nation-type="model.nationType.maya"/>		
+    <nation id="model.nation.purepecha" color="0xb704db"
+            nation-type="model.nationType.purepecha"/>
+	<nation id="model.nation.zapotec" color="0xb5ac64"
+            nation-type="model.nationType.zapotec"/>
+	<nation id="model.nation.muisca" color="0xc4a031"
+            nation-type="model.nationType.muisca"/>
+	<nation id="model.nation.aymara" color="0xe1bbff"
+            nation-type="model.nationType.aymara"/>
+	<nation id="model.nation.mapuche" color="0x8fbf28"
+            nation-type="model.nationType.mapuche"/>
+	<nation id="model.nation.guarani" color="0x834664"
+            nation-type="model.nationType.guarani"/>
+			
+	<nation id="model.nation.scotlandREF" color="0x9900f8"
+            nation-type="model.nationType.ref"/>
+	<nation id="model.nation.veniceREF" color="0x6BBB87"
+            nation-type="model.nationType.ref"/>
+    <nation id="model.nation.austriaREF" color="0x93620a"
+            nation-type="model.nationType.ref"/>
+    <nation id="model.nation.prussiaREF" color="0x949494"
+            nation-type="model.nationType.ref"/>
+	<nation id="model.nation.polandREF" color="0x782020"
+            nation-type="model.nationType.ref"/>
+	<nation id="model.nation.osmaniyeREF" color="0xa32139"
+            nation-type="model.nationType.ref"/>
+	<nation id="model.nation.indiaREF" color="0x52a874"
+            nation-type="model.nationType.ref"/>
+	<nation id="model.nation.chinaREF" color="0xddf2aa"
+            nation-type="model.nationType.ref"/>
+	<nation id="model.nation.koreaREF" color="0xa98cb8"
+            nation-type="model.nationType.ref"/>
+    <nation id="model.nation.japanREF" color="0xc7877b"
+            nation-type="model.nationType.ref"/>	
+   </nations>
+</freecol-specification>
